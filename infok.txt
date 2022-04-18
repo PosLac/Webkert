@@ -2,3 +2,4 @@ Now when you will make modifications to any files or folders, follow the same pr
 git status
 git add .
 git commit -m "changes in the index.html"
+git push
