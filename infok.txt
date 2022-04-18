@@ -3,3 +3,5 @@ git status
 git add .
 git commit -m "changes in the index.html"
 git push
+
+SCSS: lehetnek benne változók ($bgcolor) és osztályok
