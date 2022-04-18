@@ -1,0 +1,19 @@
+<div>
+    <select #chosenImage (change)="reload()">
+        <option value="-IfJptCBOAE">-IfJptCBOAE</option>
+        <option value="cKn2ei6_-yM">cKn2ei6_-yM</option>
+        <option value="g7cI9S5IStw">g7cI9S5IStw</option>
+        <option value="ErZvJTCEPWo">ErZvJTCEPWo</option>
+        <option value="NXPmcnIEllE">NXPmcnIEllE</option>
+    </select>
+    
+    <div class="container">
+        <img class="galleryImage" [src]="'assets/' + chosenImage.value + '.jpg'">
+        <div class="break"></div>
+        <div>{{galleryObject[chosenImage.value].user_name}}</div>
+        <div class="break"></div>
+        <div>{{galleryObject[chosenImage.value].user_url}}</div>
+        <div class="break"></div>
+        <div>{{galleryObject[chosenImage.value].photo_url}}</div>
+    </div>
+</div>
