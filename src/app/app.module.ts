@@ -7,6 +7,10 @@ import { MainComponent } from './pages/main/main.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { FormsModule } from '@angular/forms';
+import { ViewerComponent } from './pages/gallery/viewer/viewer.component';
+import { ListComponent } from './pages/gallery/list/list.component';
+import { DateFormatPipe } from './shared/pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -14,11 +18,15 @@ import { MenuComponent } from './shared/menu/menu.component';
     MainComponent,
     GalleryComponent,
     ContactComponent,
-    MenuComponent
+    MenuComponent,
+    ViewerComponent,
+    ListComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

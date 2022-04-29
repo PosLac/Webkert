@@ -8,11 +8,16 @@ import { GalleryObject} from '../../shared/constants/constants';
 })
 
 export class GalleryComponent implements OnInit {
-
-  galleryObject: any = GalleryObject;
-  constructor() {}
-
+  
+  galleryObject: Array<any> = GalleryObject;
+  chosenImage: any;
+  
+  constructor() {
+  }
+  
   ngOnInit(): void {}
-
-  reload(){}
+  
+  loadImage(imageObject: any){
+    this.chosenImage = imageObject;
+  }
 }

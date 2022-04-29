@@ -33,6 +33,18 @@
     <ng-content></ng-content>
     az app.component.html-ben az adott component tagjei közé írt 
     cuccot jeleníti meg
+}
+{
+    struktúrális direktívák: if/switch/for, *-gal jelölik, ()=output, []=input
+    egyirányú adatösszekötés: {{változó}} html-ben
+    kétirányú: 
+    ngSwitchDefault
+    8
 
-
+    Don't use [(ngModel)]="password" and #password both together. I got same error and just fixed removing #password.
+    
+      //spread operator: uj objektumot hoz letre
+      this.comments.push(...this.commentObject);
+      ugyanaz:
+      this.comments.push(Object.assign({}this.commentObject));
 }
