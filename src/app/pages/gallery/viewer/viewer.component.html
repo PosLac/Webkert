@@ -36,7 +36,6 @@
     </div>    
     <div class="break"></div>
     <div>
-        <button (click)="addComment()">ADD</button>
-    </div>
-    
+        <button (click)="addComment()" [routerLink]="'/gallery/succesful/' + commentObject['username']">ADD</button>
+    </div>    
 </div>

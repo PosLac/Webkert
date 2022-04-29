@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, AfterViewInit, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -7,6 +7,8 @@ import { Component, OnInit, AfterViewInit, EventEmitter, Output } from '@angular
 })
 
 export class MenuComponent implements OnInit, AfterViewInit{
+  
+  @Input() currentPage: string = '';
   @Output() selectedPage: EventEmitter<string> = new EventEmitter();
   
 
@@ -22,7 +24,7 @@ export class MenuComponent implements OnInit, AfterViewInit{
     console.log('ngAfterViewInit called');
   }
 
-  menuSwitch(pageValue: string){
-      this.selectedPage.emit(pageValue);
+  menuSwitch(){
+      this.selectedPage.emit(this.currentPage);
   }
 }
