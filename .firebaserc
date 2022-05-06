@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "webforum-46d3c": {
+      "hosting": {
+        "Forum": [
+          "webforum-46d3c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "webforum-46d3c"
+  }
+}

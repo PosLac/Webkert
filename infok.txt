@@ -53,3 +53,12 @@
     ng generate module pages/not-found --route=not-found --module=app.module
     observable: nyitott adatfolyam
 }
+{
+    login/reg 8. vidi?
+}
+{
+    firebase url hosting
+    ng build
+    ng build --configuration=production
+    firebase deploy --only hosting
+}

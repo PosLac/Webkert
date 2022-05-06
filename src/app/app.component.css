@@ -1,3 +1,18 @@
-.main_component{
-    height: 100vh;
+a{
+    text-decoration: none;
+    color: white
+}
+
+a:hover, a:active{
+    color: rgb(131, 255, 208);
+}
+
+.navigation-items{
+    list-style: none;
+    padding: 0;    
+    margin: 0;    
+}
+
+mat-sidenav{
+    width: 250px;
 }

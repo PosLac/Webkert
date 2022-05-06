@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { 
     path: 'main', 
     loadChildren: () => import('./pages/main/main.module')
-    .then(m => m.MainModule)
+    .then(m => m.MainModule),
   },
   {
-    path: 'gallery', 
-    loadChildren: () => import('./pages/gallery/gallery.module')
-    .then(m => m.GalleryModule),
+    path: 'questions', 
+    loadChildren: () => import('./pages/questions/questions.module')
+    .then(m => m.QuestionsModule),
+    //canActivate: [AuthGuard]
   },
   {    
     path: 'contact', 
     loadChildren: () => import('./pages/contact/contact.module')
     .then(m => m.ContactModule),
+    canActivate: [AuthGuard]
   },
   {  
     path: 'not-found', 
@@ -27,6 +30,8 @@ const routes: Routes = [
     redirectTo: '/main',
     pathMatch: 'full'
   },
+  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
+  { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) },
   {  
     path: '**', 
     redirectTo: '/not-found'

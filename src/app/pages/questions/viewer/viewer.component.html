@@ -1,0 +1,44 @@
+<div class="div-card" *ngIf="questionInput">
+    <mat-card fxLayout fxLayoutGap="20px">
+        <span fxFlex="1 1 50%">
+            <mat-card-header>
+                <mat-card-title>{{questionInput.user_name}}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <img class="galleryImage" [src]="loadedImage" />
+                <div>{{questionInput.user_name}}</div>
+                <div class="break"></div>
+                <div>{{questionInput.title}}</div>
+                <div class="break"></div>
+                <div>{{questionInput.description}}</div>
+                <div class="break"></div>
+            </mat-card-content>
+        </span>
+        <span fxFlex="1 1 50%">
+            <mat-card-actions>
+                <form [formGroup]="commentsForm" (ngSubmit)="addComment()">
+                    <div>
+                        <mat-form-field>
+                            <mat-label for="username">Username: </mat-label>
+                            <input matInput type="text" formControlName="username" />
+                        </mat-form-field>
+                    </div>
+                    <div class="break"></div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label for="comment">Comment: </mat-label>
+                            <textarea matInput rows="10" cols="50" formControlName="comment"></textarea>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="break"></div>
+                    <div>
+                        <button mat-raised-button color="primary" type="submit">ADD</button>
+                    </div>
+                </form>
+            </mat-card-actions>
+        </span>
+
+    </mat-card>
+</div>
