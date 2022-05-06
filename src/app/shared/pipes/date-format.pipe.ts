@@ -10,8 +10,6 @@ export class DateFormatPipe implements PipeTransform {
     let tzoffset = (new Date(value)).getTimezoneOffset() * 60000;
     let lovalISOTime = (new Date(Date.now() - tzoffset)).toISOString().replace('Z', '').replace('T', ' ');
     return lovalISOTime;
-    //new Date().toISOString();
-    //return null;
   }
 
 }

@@ -12,6 +12,7 @@ const routes: Routes = [
     path: 'questions', 
     loadChildren: () => import('./pages/questions/questions.module')
     .then(m => m.QuestionsModule),
+    //TODO
     //canActivate: [AuthGuard]
   },
   {    

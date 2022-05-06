@@ -8,9 +8,6 @@ export class FakeLoadingService {
 
   constructor() { }
 
-  // Promise
-  // Observable
-
   loadingWithPromise(email: string, password: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
       let i = 0;
@@ -25,12 +22,10 @@ export class FakeLoadingService {
   }
 
   loadingWithObservable(email: string, password: string): Observable<boolean> {
-    // data stream
     return new Observable((subscriber: Subscriber<boolean>) => {
       let i = 0;
       const interval = setInterval(() => {
         i++;
-        // subscriber.next(i);
         if (i === 3) {
           if (email === 'test@gmail.com' && password === 'testpw') {
             subscriber.next(true);
