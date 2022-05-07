@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth.service';
+import { User } from '../../shared/models/User';
+import { UserService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +23,7 @@ export class SignupComponent implements OnInit {
     })
   });
 
-  constructor(private router: Router, private location: Location, private authService: AuthService) { }
+  constructor(private location: Location, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +32,20 @@ export class SignupComponent implements OnInit {
     console.log(this.signUpForm.value);
     this.authService.signup(this.signUpForm.get('email')?.value, this.signUpForm.get('password')?.value).then(cred => {
       console.log(cred);
-      this.router.navigateByUrl('/main');
+      const user: User = {
+        id: cred.user?.uid as string,
+        email: this.signUpForm.get('email')?.value,
+        username: this.signUpForm.get('email')?.value.split('@')[0],
+        name: {
+          firstname: this.signUpForm.get('name.firstname')?.value,
+          lastname: this.signUpForm.get('name.lastname')?.value
+        } 
+      };
+      this.userService.create(user).then(_ => {
+        console.log('User added successfully.');
+      }).catch(error => {
+        console.error(error);
+      })
     }).catch(error => {
       console.error(error);
     });

@@ -17,16 +17,26 @@
     height: 0;
 }
 
-table, th, td {
+table{
+    margin: 10px;
+}
+
+#username{
+    vertical-align: middle;
+    text-align: center;
+    color: #5F3EDE;
+    text-shadow: black 1px 1px;
+    font-weight: bold;
+    margin: 0;
+}
+
+th{
+    background-color: #5F3EDE;
+}
+
+table, th, td{
     border: 1px solid black;
-}
-
-.table-header-even {
-    background-color: darkcyan;
-}
-
-.table-header-odd {
-    background-color: cyan;
+    border-collapse: collapse;
 }
 
 form {
@@ -49,3 +59,4 @@ mat-card-content {
 mat-card{
     background-color:cornflowerblue;
 }
+

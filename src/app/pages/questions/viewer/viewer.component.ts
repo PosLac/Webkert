@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Image } from '../../../shared/models/Image';
 import { Comment } from '../../../shared/models/Comment';
 import { GalleryService } from '../../../shared/services/gallery.service';
 import { Question } from 'src/app/shared/models/Question';
+import { CommentService } from '../../../shared/services/comment.service';
+import { UserService } from '../../../shared/services/user.service';
+import { User } from '../../../shared/models/User';
 
 @Component({
   selector: 'app-viewer',
@@ -16,23 +18,37 @@ export class ViewerComponent implements OnInit, OnChanges {
   @Input() questionInput?: Question;
   loadedImage?: string;
   comments: Array<Comment> = [];
+  user?: User;
 
   commentsForm = this.createForm({
+    id: '',
     username: '',
     comment: '',
-    date: new Date()
+    date: 0,
+    imageId: this.questionInput?.id
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private galleryService: GalleryService) { }
+
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private galleryService: GalleryService,
+    private commentService: CommentService,
+    private userService: UserService
+    ) { }
 
   ngOnChanges(): void {
     if (this.questionInput?.id) {
-      this.galleryService.loadImage(this.questionInput?.id + '.png').subscribe(data => {
-        let reader = new FileReader();
+      this.commentsForm.get('imageId')?.setValue(this.questionInput.id);
+      this.galleryService.loadImage(this.questionInput.image_url).subscribe(data => {
+        this.loadedImage = data;
+        /* let reader = new FileReader();
         reader.readAsDataURL(data);
         reader.onloadend = () => {
           this.loadedImage = reader.result as string;
-        }
+        } */
+      });
+      this.commentService.getCommentsByImageId(this.questionInput.id).subscribe(comments => {
+        this.comments = comments;
       })
     }
   }
@@ -52,9 +68,21 @@ export class ViewerComponent implements OnInit, OnChanges {
   addComment() {
     if (this.commentsForm.valid) {
       if (this.commentsForm.get('username') && this.commentsForm.get('comment')) {
-        this.commentsForm.get('date')?.setValue(new Date());
-        this.comments.push({ ...this.commentsForm.value });
-        this.router.navigateByUrl('/gallery/successful/' + this.commentsForm.get('username')?.value);
+        this.commentsForm.get('date')?.setValue(new Date().getTime());
+
+        // SPREAD OPERATOR
+        // this.comments.push({ ...this.commentsForm.value });
+
+
+        // Object
+        // this.comments.push(Object.assign({}, this.commentObject));
+        
+        // TODO: INSERT
+        this.commentService.create(this.commentsForm.value).then(_ => {
+          this.router.navigateByUrl('/questions/successful/' + this.commentsForm.get('username')?.value);
+        }).catch(error => {
+          console.error(error);
+        });
       }
     }
   }

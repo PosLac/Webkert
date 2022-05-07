@@ -3,13 +3,14 @@
         <span fxFlex="1 1 50%">
             <mat-card-header>
                 <mat-card-title>
-                    <img class="galleryImage" [src]="loadedImage" />
-                    <div>{{questionInput.user_name}}</div>
+                        <img class="galleryImage" [src]="loadedImage" />
                 </mat-card-title>
+                <h1 id="username">{{questionInput.user_name}}</h1>
             </mat-card-header>
 
             <mat-card-content>
-                <h1 class="title">{{questionInput.title}}</h1>
+                <br>
+                <h2 class="title">{{questionInput.title}}</h2>
                 <div class="break"></div>
                 <div>{{questionInput.description}}</div>
                 <div class="break"></div>
@@ -20,14 +21,14 @@
                 <form [formGroup]="commentsForm" (ngSubmit)="addComment()">
                     <div>
                         <mat-form-field>
-                            <mat-label for="username">Username: </mat-label>
+                            <mat-label for="username">Felhasználónév: </mat-label>
                             <input matInput type="text" formControlName="username" />
                         </mat-form-field>
                     </div>
                     <div class="break"></div>
                     <div>
                         <mat-form-field>
-                            <mat-label for="comment">Comment: </mat-label>
+                            <mat-label for="comment">Válasz: </mat-label>
                             <textarea matInput rows="10" cols="50" formControlName="comment"></textarea>
                         </mat-form-field>
                     </div>
@@ -41,4 +42,19 @@
         </span>
 
     </mat-card>
+    <div *ngIf="comments.length">
+        <table>
+            <tr>
+                <th>Felhasználó</th>
+                <th>Válasz</th>
+                <th>Dátum</th>
+            </tr>
+            <tr *ngFor="let comment of comments; let i = index;"
+                [ngStyle]="{'background-color' : i % 2 === 0 ? '#7092F2' : '#5F3EDE'}">
+                <td>{{comment.username}}</td>
+                <td>{{comment.comment}}</td>
+                <td>{{comment.date | dateFormat}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

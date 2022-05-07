@@ -61,4 +61,13 @@
     ng build
     ng build --configuration=production
     firebase deploy --only hosting
+
+    
+}
+
+C:\Users\123\Desktop\Webkert\Projekt\Forum>
+
+{
+
+    
 }

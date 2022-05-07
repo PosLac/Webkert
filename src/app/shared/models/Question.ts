@@ -3,5 +3,5 @@ export interface Question {
     user_name: string;
     title: string;
     description: string;
-    photo_url: string;
+    image_url: string;
 }
