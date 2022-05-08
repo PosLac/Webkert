@@ -1,4 +1,4 @@
-export const GalleryObject = [
+export const QuestionsObject = [
    
     {
         "id": "1",

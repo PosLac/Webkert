@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from 'src/app/shared/models/Question';
 import { Image } from '../../shared/models/Image';
-import { GalleryService } from '../../shared/services/gallery.service';
+import { QuestionsService } from '../../shared/services/questions.service';
 
 @Component({
   selector: 'app-questions',
@@ -10,14 +10,14 @@ import { GalleryService } from '../../shared/services/gallery.service';
 })
 
 export class QuestionsComponent implements OnInit {
-  galleryObject?: Array<Image>;
+  questionsObject?: Array<Image>;
   chosenQuestion?: Question;
 
-  constructor(private galleryService: GalleryService) { }
+  constructor(private questionService: QuestionsService) { }
 
   ngOnInit(): void {
-    this.galleryService.loadImageMeta('__credits.json').subscribe((data: Array<Image>) => {
-      this.galleryObject = data;
+    this.questionService.loadImageMeta('__credits.json').subscribe((data: Array<Image>) => {
+      this.questionsObject = data;
     })
   }
 

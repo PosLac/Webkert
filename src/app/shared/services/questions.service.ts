@@ -11,7 +11,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   providedIn: 'root'
 })
 
-export class GalleryService {
+export class QuestionsService {
   collectionName = 'Questions';
 
   constructor(

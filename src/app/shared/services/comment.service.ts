@@ -14,7 +14,6 @@ export class CommentService {
   create(comment: Comment) {
     comment.id = this.afs.createId();
     return this.afs.collection<Comment>(this.collectionName).doc(comment.id).set(comment);
-    // return this.afs.collection<Comment>(this.collectionName).add(comment);
   }
 
   getAll() {

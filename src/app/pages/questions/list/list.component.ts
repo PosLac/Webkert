@@ -7,15 +7,15 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angu
 })
 export class ListComponent implements OnInit, OnChanges {
 
-  @Input() galleryObjectInput?: Array<any>;
+  @Input() questionsObjectInput?: Array<any>;
   @Output() imageObjectEmitter: EventEmitter<any> = new EventEmitter();
   chosenImage: any;
 
   constructor() { }
 
   ngOnChanges() {
-    if (this.galleryObjectInput) {
-      this.chosenImage = this.galleryObjectInput[0];
+    if (this.questionsObjectInput) {
+      this.chosenImage = this.questionsObjectInput[0];
       this.reload();
     }
   }

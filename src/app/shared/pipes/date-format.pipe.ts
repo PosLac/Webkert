@@ -10,7 +10,6 @@ export class DateFormatPipe implements PipeTransform {
     let minOffSet = new Date(value).getTime() - tzoffset
     let localISOTime = (new Date(minOffSet)).toISOString().replace('Z', '').replace('T', ' ');
     return localISOTime;
-    // return null;
   }
 
 }

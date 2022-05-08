@@ -17,16 +17,7 @@ mat-card-header {
 }
 
 .main_component {
-    height: 100%;
+    height: 100vh;
     margin-top: 10px;
     padding-top: 10px;
 }
-
-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-}
-

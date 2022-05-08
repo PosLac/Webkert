@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Comment } from '../../../shared/models/Comment';
-import { GalleryService } from '../../../shared/services/gallery.service';
+import { QuestionsService } from '../../../shared/services/questions.service';
 import { Question } from 'src/app/shared/models/Question';
 import { CommentService } from '../../../shared/services/comment.service';
 import { UserService } from '../../../shared/services/user.service';
@@ -31,7 +31,7 @@ export class ViewerComponent implements OnInit, OnChanges {
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private galleryService: GalleryService,
+    private questionService: QuestionsService,
     private commentService: CommentService,
     private userService: UserService
     ) { }
@@ -39,7 +39,7 @@ export class ViewerComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     if (this.questionInput?.id) {
       this.commentsForm.get('imageId')?.setValue(this.questionInput.id);
-      this.galleryService.loadImage(this.questionInput.image_url).subscribe(data => {
+      this.questionService.loadImage(this.questionInput.image_url).subscribe(data => {
         this.loadedImage = data;
         /* let reader = new FileReader();
         reader.readAsDataURL(data);
@@ -70,14 +70,6 @@ export class ViewerComponent implements OnInit, OnChanges {
       if (this.commentsForm.get('username') && this.commentsForm.get('comment')) {
         this.commentsForm.get('date')?.setValue(new Date().getTime());
 
-        // SPREAD OPERATOR
-        // this.comments.push({ ...this.commentsForm.value });
-
-
-        // Object
-        // this.comments.push(Object.assign({}, this.commentObject));
-        
-        // TODO: INSERT
         this.commentService.create(this.commentsForm.value).then(_ => {
           this.router.navigateByUrl('/questions/successful/' + this.commentsForm.get('username')?.value);
         }).catch(error => {
