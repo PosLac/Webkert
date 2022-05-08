@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
     })
   });
 
-  constructor(private location: Location, private authService: AuthService, private userService: UserService) { }
+  constructor(private router: Router, private location: Location, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -43,6 +43,8 @@ export class SignupComponent implements OnInit {
       };
       this.userService.create(user).then(_ => {
         console.log('User added successfully.');
+        this.router.navigateByUrl('/questions');
+
       }).catch(error => {
         console.error(error);
       })
